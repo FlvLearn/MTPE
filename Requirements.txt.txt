@@ -1,0 +1,7 @@
+sidrapy
+pandas
+numpy
+seaborn
+matplotlib.pyplot
+scipy.stats
+warnings
