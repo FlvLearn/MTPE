@@ -16,7 +16,7 @@ Grupo: Flávio Melo, Adrielio Alvaro, Rodrigo Felix
 """
 
 #--- Bloco 1: Instalando e Importando Bibliotecas ---
-!pip install sidrapy -q  #Instalando por não fazer parte da biblioteca padrão
+#!pip install sidrapy -q  #Instalando por não fazer parte da biblioteca padrão
 
 import sidrapy #Conveniencia para API do sidra
 import pandas as pd
