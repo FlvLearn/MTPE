@@ -95,13 +95,13 @@ df_macro['Var_Desem_12M_Lag3'] = df_macro['Var_Desemprego_12M'].shift(3)
 #Isso garante que correlação, gráficos e regressão usem exatamente a mesma janela de dados
 df_clean = df_macro.dropna(subset=['Var_Desem_12M_Lag3', 'IPCA_12M', 'INPC_12M']).copy()  #.copy() para garantir o problema visto em sala 'SettingWithCopyWarning'
 
-print("="*70)
-print("CORRELAÇÃO: Choque Anual de Desemprego (Defasado 3m) vs Inflação 12m")
-print("="*70)
+st.write("="*70)
+st.write("CORRELAÇÃO: Choque Anual de Desemprego (Defasado 3m) vs Inflação 12m")
+st.write("="*70)
 
 matriz_corr = df_clean[['Var_Desem_12M_Lag3', 'IPCA_12M', 'INPC_12M']].corr() #.corr() é fazer uma correlação entre os valores
-print(matriz_corr.loc[['IPCA_12M', 'INPC_12M'], ['Var_Desem_12M_Lag3']])
-print("\n-> Interpretação  : Valores negativos indicam que aumentos anuais de desemprego reduzem a inflação acumulada do período. \n-> Interpretação 2: INPC apresenta maior correlação com desemprego.")
+st.write(matriz_corr.loc[['IPCA_12M', 'INPC_12M'], ['Var_Desem_12M_Lag3']])
+st.write("\n-> Interpretação  : Valores negativos indicam que aumentos anuais de desemprego reduzem a inflação acumulada do período. \n-> Interpretação 2: INPC apresenta maior correlação com desemprego.")
 
 """5 - visualizando diferença de impacto"""
 
@@ -167,22 +167,22 @@ slope_inpc, _, r_inpc, p_inpc, _ = linregress(df_clean['Var_Desem_12M_Lag3'], df
 #Calculo da diferença percentual do efeito nos dois índices
 dif_perc = ((abs(slope_inpc) - abs(slope_ipca)) / abs(slope_ipca)) * 100
 
-print("ANÁLISE DE SENSIBILIDADE (JANELA ANUALIZADA)")
-print("-"*60)
-print(f"Elasticidade no IPCA: {slope_ipca:.4f} (R²: {r_ipca**2:.4f}, p-valor: {p_ipca:.4f})")
-print(f"Elasticidade no INPC: {slope_inpc:.4f} (R²: {r_inpc**2:.4f}, p-valor: {p_inpc:.4f})")
-print("-" * 60)
-print(f"Diferença do impacto sobre os índices (Absoluto): {abs(slope_ipca - slope_inpc):.4f}")
-print("\nCONCLUSÃO:")
+st.write("ANÁLISE DE SENSIBILIDADE (JANELA ANUALIZADA)")
+st.write("-"*60)
+st.write(f"Elasticidade no IPCA: {slope_ipca:.4f} (R²: {r_ipca**2:.4f}, p-valor: {p_ipca:.4f})")
+st.write(f"Elasticidade no INPC: {slope_inpc:.4f} (R²: {r_inpc**2:.4f}, p-valor: {p_inpc:.4f})")
+st.write("-" * 60)
+st.write(f"Diferença do impacto sobre os índices (Absoluto): {abs(slope_ipca - slope_inpc):.4f}")
+st.write("\nCONCLUSÃO:")
 
 if abs(slope_inpc) > abs(slope_ipca):
-    print("O INPC apresentou maior sensibilidade às variações do desemprego do que o IPCA.")
+    st.write("O INPC apresentou maior sensibilidade às variações do desemprego do que o IPCA.")
     dif_perc = ((abs(slope_inpc) - abs(slope_ipca)) / abs(slope_ipca)) * 100
-    print(f"O INPC apresentou sensibilidade {dif_perc:.1f}% superior à do IPCA.")
+    st.write(f"O INPC apresentou sensibilidade {dif_perc:.1f}% superior à do IPCA.")
 elif abs(slope_ipca) > abs(slope_inpc):
-    print("O IPCA apresentou maior sensibilidade às variações do desemprego do que o INPC.")
+    st.write("O IPCA apresentou maior sensibilidade às variações do desemprego do que o INPC.")
     dif_perc = ((abs(slope_ipca) - abs(slope_inpc)) / abs(slope_inpc)) * 100
-    print(f"O IPCA apresentou sensibilidade {dif_perc:.1f}% superior à do INPA.")
+    st.write(f"O IPCA apresentou sensibilidade {dif_perc:.1f}% superior à do INPA.")
 else:
-    print("Ambos apresentaram a mesma sensibilidade a variação da taxa de desemprego.")
+    st.write("Ambos apresentaram a mesma sensibilidade a variação da taxa de desemprego.")
 
