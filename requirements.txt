@@ -1,7 +1,7 @@
-sidrapy
+streamlit
 pandas
+sidrapy
 numpy
 seaborn
 matplotlib
 scipy
-warnings
