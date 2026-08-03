@@ -18,6 +18,7 @@ Grupo: Flávio Melo, Adrielio Alvaro, Rodrigo Felix
 #--- Bloco 1: Instalando e Importando Bibliotecas ---
 #!pip install sidrapy -q  #Instalando por não fazer parte da biblioteca padrão
 
+import streamlit as st
 import sidrapy #Conveniencia para API do sidra
 import pandas as pd
 import numpy as np  #Suporte implicito a outras bibliotecas
