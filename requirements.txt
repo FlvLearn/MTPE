@@ -2,6 +2,6 @@ sidrapy
 pandas
 numpy
 seaborn
-matplotlib.pyplot
-scipy.stats
+matplotlib
+scipy
 warnings
